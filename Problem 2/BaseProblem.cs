@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Problems {
@@ -11,9 +12,6 @@ namespace Problems {
       ComputeResult();
       Console.WriteLine("Answer on problem " + ProblemNumber + " is " + this.Result);
       return this.Result;
-    }
-    public bool IsEven(long v) {
-      return (v & 1) == 0;
     }
   }
 }

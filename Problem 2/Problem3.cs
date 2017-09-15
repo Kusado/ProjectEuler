@@ -20,7 +20,7 @@ namespace Problems {
     }
     public long ComputeResult(long num) {
       for (long i = (long)Math.Sqrt(num) + 1; i > 0; i--) {
-        if (IsNumberPrime(i)) {
+        if (Helpers.IsPrime(i)) {
           if (num % i == 0) {
             this.Result = (long)i;
             return this.Result;
@@ -29,12 +29,13 @@ namespace Problems {
       }
       return 1;
     }
-    public static bool IsNumberPrime(long i) {
-      for (long j = 2; j <= Math.Sqrt(i); j++)
-        if (i % j == 0) {
-          return false;
-        }
-      return true;
+    public bool IsNumberPrime(long i) {
+      return Helpers.IsPrime(i);
+      //for (long j = 2; j <= Math.Sqrt(i); j++)
+      //  if (i % j == 0) {
+      //    return false;
+      //  }
+      //return true;
     }
     public static bool IsNumberPrimeParallel(long num) {
       bool test = true;

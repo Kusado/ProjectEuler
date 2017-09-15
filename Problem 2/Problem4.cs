@@ -23,7 +23,7 @@ namespace Problems {
     }
     public bool IsPalindrome(long v) {
       string num = v.ToString();
-      if (!IsEven(num.Length)) return false;
+      if (!Helpers.IsEven(num.Length)) return false;
       string s1 = num.Substring(0, num.Length / 2);
       StringBuilder sb = new StringBuilder();
       for (int i = num.Length; i > num.Length / 2; i--) {
