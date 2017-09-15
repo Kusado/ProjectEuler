@@ -17,16 +17,43 @@ namespace Problems {
       return true;
     }
 
-    public static List<int> GetPrimes(int Celling = 100, int floor = 2) {
+    public static List<int> GetPrimes_old(int Celling = 100, int floor = 2) {
       if (floor < 2 || floor > Celling) { throw new ArgumentException(); }
-      var result = Enumerable.Range(2, Celling-1).ToList();
+      var result = new List<int>() { 2 };
+      for (int i = 3; i <= Celling; i++) {
+        if (IsEven(i)) continue;
+        result.Add(i);
+      }
       int index = 0;
       while (result[index] != result.Last()) {
         int j = result[index];
         result.RemoveAll(x => (x % j) == 0 & x != j);
         index++;
       }
-      return result.Where(x=>x>=floor).ToList();
+      return result.Where(x => x >= floor).ToList();
+    }
+    public static List<int> GetPrimes(int Celling = 100, int floor = 2) {
+      if (floor < 2 || floor > Celling) { throw new ArgumentException(); }
+      //var result = Enumerable.Range(2, Celling).ToList();
+      bool[] sieve = Enumerable.Repeat(false, Celling+1).ToArray();
+      int crossLimit = (int)Math.Ceiling(Math.Sqrt(Celling));
+      //отсеем все чётные числа
+      for (int i = 4; i <= Celling; i += 2) {
+        sieve[i] = true;
+      }
+      for (int n = 3; n <= crossLimit; n += 2) {
+        if (!sieve[n]) {
+          for (int m = n * n; m <= Celling; m += 2 * n) {
+            sieve[m] = true;
+          }
+        }
+      }
+      var result = new List<int>();
+      for (int i = 2; i <=Celling; i++) {
+        if (!sieve[i]) result.Add(i);
+      }
+
+      return result.Where(x => x >= floor).ToList();
     }
 
     public static List<int> GetPrimeDividers(int v) {
@@ -84,5 +111,12 @@ namespace Problems {
       }
       return true;
     }
+
+    public static ulong SumOfList<T>(List<T> li) {
+      ulong result = 0;
+      li.ForEach(x => result += ulong.Parse(x.ToString()));
+      return result;
+    }
+
   }
 }

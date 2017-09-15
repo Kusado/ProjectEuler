@@ -105,6 +105,21 @@ namespace XUnitTestProject {
       Assert.Equal(result, res);
     }
 
+    [Theory]
+    [MemberData("GetListOfNumbers")]
+    public void ShouldReturnSumOfListMembers(List<uint> li, ulong answer) {
+      Assert.Equal(Helpers.SumOfList(li), answer);
+    }
+    public static IEnumerable<object[]> GetListOfNumbers() {
+      return new List<object[]>() {
+        new object[]{new List<uint>(){1,2,3},6 },
+        new object[]{new List<uint>(){10,20,30},60 },
+        new object[]{new List<uint>(){11,22,33},66 },
+        new object[]{new List<uint>(){0,0,0},0 },
+
+      };
+    }
+
 
   }
 }
