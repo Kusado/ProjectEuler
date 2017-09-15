@@ -18,18 +18,15 @@ namespace Problems {
     }
 
     public static List<int> GetPrimes(int Celling = 100, int floor = 2) {
-      if (floor < 2) { throw new ArgumentException(); }
-      var result = new List<int>();
-      for (int i = floor; i <= Celling; i++) {
-        result.Add(i);
-      }
+      if (floor < 2 || floor > Celling) { throw new ArgumentException(); }
+      var result = Enumerable.Range(2, Celling-1).ToList();
       int index = 0;
       while (result[index] != result.Last()) {
         int j = result[index];
-        result.RemoveAll(x => (x % j) == 0 && x != j);
+        result.RemoveAll(x => (x % j) == 0 & x != j);
         index++;
       }
-      return result;
+      return result.Where(x=>x>=floor).ToList();
     }
 
     public static List<int> GetPrimeDividers(int v) {
@@ -73,6 +70,19 @@ namespace Problems {
       }
       result.Sort();
       return result;
+    }
+
+    public static bool IsEvenlyDivisible(long number, long divider) {
+      return (number % divider) == 0;
+    }
+
+    public static bool IsEvenlyDivisibleByArray(long number, long divider) {
+      for (long i = 1; i <= divider; i++) {
+        if (!IsEvenlyDivisible(number, i)) {
+          return false;
+        }
+      }
+      return true;
     }
   }
 }

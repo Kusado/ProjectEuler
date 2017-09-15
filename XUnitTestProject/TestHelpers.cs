@@ -50,13 +50,20 @@ namespace XUnitTestProject {
       Assert.Equal(result, primes.Count);
     }
     [Theory]
-    [InlineData(18, 7)]
-    [InlineData(16, 6)]
-    [InlineData(7, 4)]
-    [InlineData(2, 1)]
-    public void ShouldReturnPrimesCountFrom(int Celling, int result) {
-      var primes = Helpers.GetPrimes(Celling);
+    [InlineData(1381, 1511, 20)]
+    [InlineData(2, 3, 2)]
+    [InlineData(3433, 3449, 2)]
+    [InlineData(3259, 3413, 20)]
+    //[InlineData(2, 1)]
+    public void ShouldReturnPrimesCountFrom(int floor, int Celling, int result) {
+      var primes = Helpers.GetPrimes(Celling, floor);
       Assert.Equal(result, primes.Count);
+    }
+
+    [Fact]
+    public void ShouldPrimeBeLike() {
+      var primes = Helpers.GetPrimes(3572, 3430);
+      Assert.Equal(3433, primes.First());
     }
 
     [Theory]
@@ -74,6 +81,28 @@ namespace XUnitTestProject {
         new object[]{ new List<int>() { 7 }, 7 },
         new object[]{ new List<int>() { 2}, 2 },
       };
+    }
+    [Theory]
+    [InlineData(2520, 10, true)]
+    [InlineData(2520, 9, true)]
+    [InlineData(2520, 8, true)]
+    [InlineData(2520, 7, true)]
+    [InlineData(2520, 6, true)]
+    [InlineData(2520, 11, false)]
+    public void ShoildBeEvenlyDivisible(long number, long divider, bool result) {
+      var res = Helpers.IsEvenlyDivisible(number, divider);
+      Assert.Equal(result, res);
+    }
+    [Theory]
+    [InlineData(2520, 10, true)]
+    [InlineData(2520, 9, true)]
+    [InlineData(2520, 8, true)]
+    [InlineData(2520, 7, true)]
+    [InlineData(2520, 13, false)]
+    [InlineData(2520, 11, false)]
+    public void ShoildBeEvenlyDivisibleByArray(long number, long divider, bool result) {
+      var res = Helpers.IsEvenlyDivisibleByArray(number, divider);
+      Assert.Equal(result, res);
     }
 
 

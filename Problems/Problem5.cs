@@ -18,17 +18,6 @@ namespace Problems {
       ComputeResult(20);
     }
 
-    public bool IsEvenlyDivisible(long number, long divider) {
-      return (number % divider) == 0;
-    }
 
-    public bool IsEvenlyDivisibleByArray(long number, long divider) {
-      for (long i = 1; i <= divider; i++) {
-        if (!IsEvenlyDivisible(number, i)) {
-          return false;
-        }
-      }
-      return true;
-    }
   }
 }
