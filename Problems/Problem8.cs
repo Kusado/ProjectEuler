@@ -18,13 +18,13 @@ namespace Problems {
       for (int i = 0; i <= this.tDigit.Length-v; i++) {
         var l = ToListShort(this.tDigit.Substring(i, v));
         newMult = 1;
-        l.ForEach(x=> newMult = newMult * x);
+        l.ForEach(x=> newMult *= x);
         bigMult = Math.Max(newMult, bigMult);
       }
       this.Result = bigMult;
     }
-    public List<short> ToListShort(string s) {
-      return s.Select(c => short.Parse(c.ToString())).ToList();
+    public List<byte> ToListShort(string s) {
+      return s.Select(c => byte.Parse(c.ToString())).ToList();
     }
   }
 }
