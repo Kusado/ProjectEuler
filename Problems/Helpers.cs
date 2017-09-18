@@ -222,6 +222,16 @@ namespace Problems {
          return result;
       }
 
+      public static int[] MultIntArr(int[] a, int[] b, int step) {
+         int[] result = new int[a.Length + b.Length];
+         for (int i = b.Length - 1; i >= 0; i++) {
+            result[i] = 0;
+            for (int j = a.Length - 1; j >= 0; j++) {
+               result[i] += b[i] * a[j] * j * 10;
+            }
+         }
+      }
+
       public static string ReverseString(string str) {
          char[] chars = str.ToCharArray();
          for (int i = 0, j = str.Length - 1; i < j; i++, j--) {
