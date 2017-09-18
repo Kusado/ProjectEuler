@@ -18,8 +18,11 @@ namespace Problems {
       if (watch.ElapsedMilliseconds > 5000) {
         Console.WriteLine("Time elapsed: " + watch.ElapsedMilliseconds / 1000.0 + "s");
       }
-      else {
+      else if(watch.ElapsedMilliseconds>5){
         Console.WriteLine("Time elapsed: " + watch.ElapsedMilliseconds + "ms");
+      }
+      else {
+         Console.WriteLine("Time elapsed: " + watch.ElapsedTicks + " ticks");
       }
       return this.Result;
     }

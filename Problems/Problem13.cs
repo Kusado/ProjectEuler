@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Problems {
   public class Problem13 : BaseProblem {
     public Problem13() { this.ProblemNumber = 13; }
+     public string sResult;
     public override void ComputeResult() {
       var input = @"37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538
@@ -107,24 +109,30 @@ namespace Problems {
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690".Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-//      input = @"
-//1000
-//1000
-//1000
-//1300
-//9100
-//1011
-//".Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-
-
-      string sSum = "0";
+         string sSum = "0";
       foreach (string s in input) {
         string oldSum = sSum;
-        sSum = Helpers.LongSum(oldSum, s, 1);
-        Console.WriteLine($"{sSum}:{sSum.Length}");
+        sSum = Helpers.LongSum(oldSum, s);
       }
 
-      Console.WriteLine(sSum);
+       this.sResult = sSum;
     }
-  }
+      public new string GetResult() {
+         Stopwatch watch = new Stopwatch();
+         watch.Start();
+         ComputeResult();
+         watch.Stop();
+         Console.WriteLine("Answer on problem " + this.ProblemNumber + " is " + this.sResult);
+         if (watch.ElapsedMilliseconds > 5000) {
+            Console.WriteLine("Time elapsed: " + watch.ElapsedMilliseconds / 1000.0 + "s");
+         }
+         else if (watch.ElapsedMilliseconds > 5) {
+            Console.WriteLine("Time elapsed: " + watch.ElapsedMilliseconds + "ms");
+         }
+         else {
+            Console.WriteLine("Time elapsed: " + watch.ElapsedTicks + " ticks");
+         }
+         return this.sResult;
+      }
+   }
 }
