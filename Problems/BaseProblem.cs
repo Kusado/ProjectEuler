@@ -15,7 +15,12 @@ namespace Problems {
       ComputeResult();
       watch.Stop();
       Console.WriteLine("Answer on problem " + ProblemNumber + " is " + this.Result);
-      Console.WriteLine("Time elapsed: "+watch.ElapsedMilliseconds/1000.0);
+      if (watch.ElapsedMilliseconds > 5000) {
+        Console.WriteLine("Time elapsed: " + watch.ElapsedMilliseconds / 1000.0 + "s");
+      }
+      else {
+        Console.WriteLine("Time elapsed: " + watch.ElapsedMilliseconds + "ms");
+      }
       return this.Result;
     }
   }
