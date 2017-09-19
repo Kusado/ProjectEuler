@@ -15,17 +15,13 @@ namespace Problems {
       }
       this.Result = sum;
     }
-    public int GetDividersSum(int num) {
-      var divs = Helpers.GetDividers(num);
-      divs.Remove(num);
-      return divs.Sum();
-    }
+
 
     public Dictionary<int, int> GetAmicableNumbers(int floor, int cell) {
       var result = new Dictionary<int, int>();
       var tempDict = new Dictionary<int, int>();
       for (int i = floor; i <= cell; i++) {
-        tempDict.Add(i, GetDividersSum(i));
+        tempDict.Add(i, Helpers.GetDividersSum(i)-i);
       }
       foreach (KeyValuePair<int, int> pair in tempDict) {
         if (pair.Key == pair.Value) continue;

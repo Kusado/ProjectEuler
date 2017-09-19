@@ -95,6 +95,40 @@ namespace Problems {
       result.Add(val);
       return result;
     }
+    public static int GetDividersSum_Old(int num) {
+      var divs = Helpers.GetDividers(num);
+      divs.Remove(num);
+      return divs.Sum();
+    }
+    public static int GetDividersSum(int num) {
+      return GetDividersSum2(num);
+    }
+    private static int GetDividersSum2(int a) {
+      int sum = 1, k = 1, i;
+      if (a == 1)
+        return a;
+      while ((a & 1) == 0) {
+        k <<= 1;
+        a >>= 1;
+      }
+      k = (k << 1) - 1;
+      if (a == 1)
+        return k;
+      else
+        sum = k;
+      for (i = 3; i * i <= a; i += 2) {
+        k = 1;
+        while (a % i == 0) {
+          k *= i;
+          a /= i;
+        }
+        if (k > 1)
+          sum *= ((k * i) - 1) / (i - 1);
+      }
+      if (a > 1)
+        sum *= a + 1;
+      return sum;
+    }
 
     public static List<int> GetPrimeDividers(int v) {
       var primes = GetPrimes(v);
