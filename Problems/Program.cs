@@ -5,7 +5,7 @@ using System.Linq;
 namespace Problems {
   class Program {
     static void Main(string[] args) {
-      var problem = new Problem14();
+      var problem = new Problem21();
       problem.GetResult();
       Console.ReadKey();
     }
